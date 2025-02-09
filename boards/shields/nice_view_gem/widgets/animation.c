@@ -71,5 +71,5 @@ void draw_animation(lv_obj_t *canvas) {
     lv_img_set_src(art, crystal_anim_imgs[random_index]);
 #endif
 
-    lv_obj_align(art, LV_ALIGN_TOP_LEFT, 0, 0);
+    lv_obj_align(art, LV_ALIGN_TOP_LEFT, 36, 0);
 }
