@@ -75,7 +75,7 @@ const lv_img_dsc_t fry_01 = {
 
 #ifndef LV_ATTRIBUTE_IMG_FRY_02
 #define LV_ATTRIBUTE_IMG_FRY_02
-#endif0
+#endif
 
 const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_FRY_02 uint8_t
     fry_02_map[] = {
