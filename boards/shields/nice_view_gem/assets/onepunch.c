@@ -71,7 +71,7 @@ const lv_img_dsc_t onepunch_01 = {
     .header.w = 80,
     .header.h = 69,
     .data_size = 620,
-    .data = left_image_map,
+    .data = onepunch_01_map,
 };
 
 #ifndef LV_ATTRIBUTE_IMG_ONEPUNCH_02
@@ -141,7 +141,7 @@ const lv_img_dsc_t onepunch_02 = {
     .header.w = 80,
     .header.h = 69,
     .data_size = 620,
-    .data = left_image_2_map,
+    .data = onepunch_02_map,
 };
 
 #ifndef LV_ATTRIBUTE_IMG_ONEPUNCH_03
@@ -211,7 +211,7 @@ const lv_img_dsc_t onepunch_03 = {
     .header.w = 80,
     .header.h = 69,
     .data_size = 620,
-    .data = left_image_3_map,
+    .data = onepunch_03_map,
 };
 
 #ifndef LV_ATTRIBUTE_IMG_ONEPUNCH_04
@@ -281,7 +281,7 @@ const lv_img_dsc_t onepunch_04 = {
     .header.w = 80,
     .header.h = 69,
     .data_size = 620,
-    .data = left_image_4_map,
+    .data = onepunch_04_map,
 };
 
 #ifndef LV_ATTRIBUTE_IMG_ONEPUNCH_05
@@ -351,5 +351,5 @@ const lv_img_dsc_t onepunch_05 = {
     .header.w = 80,
     .header.h = 69,
     .data_size = 620,
-    .data = left_image_5_map,
+    .data = onepunch_05_map,
 };

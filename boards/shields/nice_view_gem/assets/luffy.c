@@ -71,5 +71,5 @@ const lv_img_dsc_t luffy_01 = {
     .header.w = 80,
     .header.h = 69,
     .data_size = 620,
-    .data = left_image_map,
+    .data = luffy_01_map,
 };

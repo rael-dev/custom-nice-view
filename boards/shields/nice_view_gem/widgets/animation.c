@@ -58,7 +58,7 @@ LV_IMG_DECLARE(onepiece_01);
 
 // Left Side
 const lv_img_dsc_t **all_left_anim_imgs[] = {
-    &fry_anim_imgs, &onepunch_anim_imgs,
+    &fry_anim_imgs[0], &onepunch_anim_imgs[0],
 };
 
 const int all_left_anim_imgs_counts[] = {
@@ -97,7 +97,7 @@ void draw_left_animation(lv_obj_t *canvas) {
 
 // Right Side
 const lv_img_dsc_t **all_right_anim_imgs[] = {
-    &crystal_anim_imgs, &onepunch_anim_imgs,
+    &crystal_anim_imgs[0], &onepunch_anim_imgs[0],
 };
 
 const int all_right_anim_imgs_counts[] = {

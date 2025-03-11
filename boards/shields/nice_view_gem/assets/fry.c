@@ -70,7 +70,7 @@ const lv_img_dsc_t fry_01 = {
     .header.w = 80,
     .header.h = 69,
     .data_size = 620,
-    .data = fry_map,
+    .data = fry_01_map,
 };
 
 #ifndef LV_ATTRIBUTE_IMG_FRY_02
@@ -139,7 +139,7 @@ const lv_img_dsc_t fry_02 = {
     .header.w = 80,
     .header.h = 69,
     .data_size = 620,
-    .data = fry_map_2,
+    .data = fry_02_map,
 };
 
 
@@ -210,5 +210,5 @@ const lv_img_dsc_t fry_03 = {
     .header.w = 80,
     .header.h = 69,
     .data_size = 620,
-    .data = fry_map_3,
+    .data = fry_03_map,
 };
