@@ -77,14 +77,14 @@ const lv_img_dsc_t *all_left_imgs[] = {
     &fry_01, &onepunch_01, &luffy_01,
 };
 
-int random(int min, int max) {
+int randomNumber(int min, int max) {
     return min + rand() / (RAND_MAX / (max - min + 1) + 1);
 }
 
 void draw_left_animation(lv_obj_t *canvas) {
     srand(time(NULL));
 #if IS_ENABLED(CONFIG_NICE_VIEW_LEFT_ANIMATION)
-    int random_index = random(0, left_anim_srcs_count);
+    int random_index = randomNumber(0, left_anim_srcs_count);
     lv_obj_t *art = lv_animimg_create(canvas);
     lv_obj_center(art);
     
@@ -96,7 +96,7 @@ void draw_left_animation(lv_obj_t *canvas) {
 #else
     lv_obj_t *art = lv_img_create(canvas);
 
-    int random_index = random(0, sizeof(all_left_imgs));
+    int random_index = randomNumber(0, sizeof(all_left_imgs));
 
     lv_img_set_src(art, all_left_imgs[random_index]);
 #endif
@@ -122,7 +122,7 @@ const lv_img_dsc_t *all_right_imgs[] = {
 
 void draw_right_animation(lv_obj_t *canvas) {
     #if IS_ENABLED(CONFIG_NICE_VIEW_RIGHT_ANIMATION)
-    int random_index = random(0, right_anim_srcs_count);
+    int random_index = randomNumber(0, right_anim_srcs_count);
     lv_obj_t *art = lv_animimg_create(canvas);
     lv_obj_center(art);
     
@@ -134,7 +134,7 @@ void draw_right_animation(lv_obj_t *canvas) {
     #else
     lv_obj_t *art = lv_img_create(canvas);
 
-    int random_index = random(0, sizeof(all_right_imgs));
+    int random_index = randomNumber(0, sizeof(all_right_imgs));
 
     lv_img_set_src(art, all_right_imgs[random_index]);
     #endif
