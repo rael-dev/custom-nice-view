@@ -114,7 +114,7 @@ const lv_img_dsc_t *all_right_anim_imgs[] = {
     &onepunch_01, &onepunch_02, &onepunch_03, &onepunch_04, &onepunch_05,
 };
 const int right_anim_start_indices[] = { 0, 16 };
-const int right_anim_img_counts[] = { 16, 5 };s
+const int right_anim_img_counts[] = { 16, 5 };
 
 const lv_img_dsc_t *all_right_imgs[] = {
     &crystal_01, &onepunch_01, &bender_01, &onepiece_01,
