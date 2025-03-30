@@ -1,8 +1,10 @@
 #include <stdlib.h>
+#include <time.h>
 #include <zephyr/kernel.h>
 #include <zephyr/random/random.h>
 #include "animation.h"
 
+////////////////////////////////////////// DECLARE ASSETS //////////////////////////////////////////
 // Fry from Futurama (Anim)
 LV_IMG_DECLARE(fry_01);
 LV_IMG_DECLARE(fry_02);
@@ -54,16 +56,22 @@ LV_IMG_DECLARE(bender_01);
 // One Piece Logo (Image)
 LV_IMG_DECLARE(onepiece_01);
 
-
+////////////////////////////////////////// DECLARE ASSETS //////////////////////////////////////////
 
 // Left Side
-const lv_img_dsc_t **all_left_anim_imgs[] = {
-    &fry_anim_imgs[0], &onepunch_anim_imgs[0],
-};
+const int left_anim_srcs_count = 3;
+const lv_img_dsc_t *all_left_anim_imgs[] = {
+    &fry_01, &fry_01, &fry_02, &fry_02, &fry_03, &fry_03, &fry_03, &fry_03, &fry_03, &fry_03, &fry_03,
+    &fry_03, &fry_03, &fry_03, &fry_03, &fry_03,
 
-const int all_left_anim_imgs_counts[] = {
-    16, 5
+    &onepunch_01, &onepunch_02, &onepunch_03, &onepunch_04, &onepunch_05,
+
+    &crystal_01, &crystal_02, &crystal_03, &crystal_04, &crystal_05, &crystal_06,
+    &crystal_07, &crystal_08, &crystal_09, &crystal_10, &crystal_11, &crystal_12,
+    &crystal_13, &crystal_14, &crystal_15, &crystal_16,
 };
+const int left_anim_start_indices[] = { 0, 16, 21 };
+const int left_anim_img_counts[] = { 16, 5, 16 };
 
 const lv_img_dsc_t *all_left_imgs[] = {
     &fry_01, &onepunch_01, &luffy_01,
@@ -74,12 +82,13 @@ int random(int min, int max) {
 }
 
 void draw_left_animation(lv_obj_t *canvas) {
+    srand(time(NULL));
 #if IS_ENABLED(CONFIG_NICE_VIEW_LEFT_ANIMATION)
-    int random_index = random(0, sizeof(all_left_anim_imgs));
+    int random_index = random(0, left_anim_srcs_count);
     lv_obj_t *art = lv_animimg_create(canvas);
     lv_obj_center(art);
     
-    lv_animimg_set_src(art, (const void **)all_left_anim_imgs[random_index], all_left_anim_imgs_counts[random_index]);
+    lv_animimg_set_src(art, (const void **)all_left_anim_imgs[left_anim_start_indices[random_index]], left_anim_img_counts[random_index]);
     
     lv_animimg_set_duration(art, CONFIG_NICE_VIEW_LEFT_ANIMATION_MS);
     lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);
@@ -96,13 +105,16 @@ void draw_left_animation(lv_obj_t *canvas) {
 }
 
 // Right Side
-const lv_img_dsc_t **all_right_anim_imgs[] = {
-    &crystal_anim_imgs[0], &onepunch_anim_imgs[0],
-};
+const int right_anim_srcs_count = 2;
+const lv_img_dsc_t *all_right_anim_imgs[] = {
+    &crystal_01, &crystal_02, &crystal_03, &crystal_04, &crystal_05, &crystal_06,
+    &crystal_07, &crystal_08, &crystal_09, &crystal_10, &crystal_11, &crystal_12,
+    &crystal_13, &crystal_14, &crystal_15, &crystal_16,
 
-const int all_right_anim_imgs_counts[] = {
-    16, 5
+    &onepunch_01, &onepunch_02, &onepunch_03, &onepunch_04, &onepunch_05,
 };
+const int right_anim_start_indices[] = { 0, 16 };
+const int right_anim_img_counts[] = { 16, 5 };s
 
 const lv_img_dsc_t *all_right_imgs[] = {
     &crystal_01, &onepunch_01, &bender_01, &onepiece_01,
@@ -110,11 +122,11 @@ const lv_img_dsc_t *all_right_imgs[] = {
 
 void draw_right_animation(lv_obj_t *canvas) {
     #if IS_ENABLED(CONFIG_NICE_VIEW_RIGHT_ANIMATION)
-    int random_index = random(0, sizeof(all_right_anim_imgs));
+    int random_index = random(0, right_anim_srcs_count);
     lv_obj_t *art = lv_animimg_create(canvas);
     lv_obj_center(art);
     
-    lv_animimg_set_src(art, (const void **)all_right_anim_imgs[random_index], all_right_anim_imgs_counts[random_index]);
+    lv_animimg_set_src(art, (const void **)all_right_anim_imgs[right_anim_start_indices[random_index]], right_anim_img_counts[random_index]);
     
     lv_animimg_set_duration(art, CONFIG_NICE_VIEW_RIGHT_ANIMATION_MS);
     lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);
