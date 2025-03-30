@@ -4,8 +4,6 @@
 #include <zephyr/random/random.h>
 #include "right_animation.h"
 
-srand(time(NULL));
-
 ////////////////////////////////////////// DECLARE ASSETS //////////////////////////////////////////
 // One Punch Man (Anim)
 LV_IMG_DECLARE(onepunch_01);
@@ -63,6 +61,7 @@ const lv_img_dsc_t *all_right_imgs[] = {
 };
 
 void draw_right_animation(lv_obj_t *canvas) {
+    srand(time(NULL));
     #if IS_ENABLED(CONFIG_NICE_VIEW_RIGHT_ANIMATION)
     int random_index = randomNumber(0, right_anim_srcs_count);
     lv_obj_t *art = lv_animimg_create(canvas);

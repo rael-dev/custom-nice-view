@@ -76,6 +76,7 @@ int randomNumber(int min, int max) {
 }
 
 void draw_left_animation(lv_obj_t *canvas) {
+    srand(time(NULL));
 #if IS_ENABLED(CONFIG_NICE_VIEW_LEFT_ANIMATION)
     int random_index = randomNumber(0, left_anim_srcs_count);
     lv_obj_t *art = lv_animimg_create(canvas);
