@@ -2,7 +2,7 @@
 #include <time.h>
 #include <zephyr/kernel.h>
 #include <zephyr/random/random.h>
-#include "animation.h"
+#include "left_animation.h"
 
 srand(time(NULL));
 
