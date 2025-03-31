@@ -1,8 +1,8 @@
-#include <zephyr/kernel.h>
+#include "screen.h"
 
+#include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
-
 #include <zmk/event_manager.h>
 #include <zmk/events/battery_state_changed.h>
 #include <zmk/events/ble_active_profile_changed.h>
@@ -20,7 +20,6 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include "layer.h"
 #include "output.h"
 #include "profile.h"
-#include "screen.h"
 #include "left_animation.h"
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
@@ -90,14 +89,16 @@ static void set_battery_status(struct zmk_widget_screen *widget,
 #endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
     widget->state.battery = state.level;
 
-    if (k_uptime_delta(&widget->startup_time) >= CONFIG_NICE_VIEW_SWITCH_ANIMATION_MS)
-    {
+    if (k_uptime_delta(&widget->startup_time) >= CONFIG_NICE_VIEW_SWITCH_ANIMATION_MS) {
         lv_obj_clean(widget->obj);
         setup_widget(widget);
+        draw_top(widget->obj, widget->cbuf, &widget->state);
         draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
+        draw_bottom(widget->obj, widget->cbuf3, &widget->state);
     }
-    
-    draw_top(widget->obj, widget->cbuf, &widget->state);
+    else {
+        draw_top(widget->obj, widget->cbuf, &widget->state);
+    }
 }
 
 static void battery_status_update_cb(struct battery_status_state state) {
@@ -197,7 +198,10 @@ int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
     widget->startup_time = k_uptime_get();
     widget->current_src_index = 0;
     widget->obj = lv_obj_create(parent);
+
     setup_widget(widget);
+    draw_top(widget->obj, widget->cbuf, &widget->state);
+    draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
