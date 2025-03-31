@@ -53,17 +53,17 @@ const lv_img_dsc_t *all_right_imgs[] = {
 };
 const int right_anim_imgs_count = 4;
 
-void draw_right_animation(lv_obj_t *canvas) {
+void draw_right_animation(lv_obj_t *canvas, int current_src_index) {
     #if IS_ENABLED(CONFIG_NICE_VIEW_RIGHT_ANIMATION)
     lv_obj_t *art = lv_animimg_create(canvas);
     lv_obj_center(art);
     
-    srand(k_uptime_get_32());
-    int random_index = rand() % right_anim_srcs_count;
-    if (random_index == 0) {
+    //srand(k_uptime_get_32());
+    //int random_index = rand() % right_anim_srcs_count;
+    if (current_src_index == 0) {
         lv_animimg_set_src(art, (const void **)crystal_anim_imgs, right_anim_img_counts[random_index]);
     }
-    else if (random_index == 1) {
+    else if (current_src_index == 1) {
         lv_animimg_set_src(art, (const void **)onepunch_anim_imgs, right_anim_img_counts[random_index]);
     }
     

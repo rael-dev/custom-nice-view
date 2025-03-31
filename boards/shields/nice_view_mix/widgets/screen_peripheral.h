@@ -9,6 +9,8 @@ struct zmk_widget_screen {
     lv_obj_t *obj;
     lv_color_t cbuf[BUFFER_SIZE * BUFFER_SIZE];
     struct status_state state;
+    int64_t startup_time;
+    int current_src_index;
 };
 
 int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent);
