@@ -53,7 +53,7 @@ const lv_img_dsc_t *all_right_imgs[] = {
 };
 const int right_anim_imgs_count = 4;
 
-void draw_right_animation(lv_obj_t *canvas, int current_src_index) {
+void draw_right_animation(lv_obj_t *canvas, int *current_src_index) {
     #if IS_ENABLED(CONFIG_NICE_VIEW_RIGHT_ANIMATION)
     lv_obj_t *art = lv_animimg_create(canvas);
     lv_obj_center(art);
