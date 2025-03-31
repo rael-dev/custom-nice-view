@@ -58,14 +58,15 @@ int randomNumber(int min, int max) {
 
 void draw_right_animation(lv_obj_t *canvas) {
     #if IS_ENABLED(CONFIG_NICE_VIEW_RIGHT_ANIMATION)
-    int random_index = randomNumber(0, right_anim_srcs_count);
     lv_obj_t *art = lv_animimg_create(canvas);
     lv_obj_center(art);
-
+    
+    // int random_index = randomNumber(0, right_anim_srcs_count);
+    int random_index = rand() % right_anim_srcs_count;
     if (random_index == 0) {
         lv_animimg_set_src(art, (const void **)crystal_anim_imgs, right_anim_img_counts[random_index]);
     }
-    else if (random_index == 1 || random_index == 2) {
+    else if (random_index == 1) {
         lv_animimg_set_src(art, (const void **)onepunch_anim_imgs, right_anim_img_counts[random_index]);
     }
     
@@ -77,7 +78,7 @@ void draw_right_animation(lv_obj_t *canvas) {
 
     srand(k_uptime_get_32());
     int random_index = randomNumber(0, sizeof(all_right_imgs));
-    
+
     lv_img_set_src(art, all_right_imgs[random_index]);
     #endif
     
