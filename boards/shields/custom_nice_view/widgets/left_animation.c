@@ -1,16 +1,8 @@
-#include <stdlib.h>
-#include <time.h>
-#include <zephyr/kernel.h>
-#include <zephyr/random/random.h>
 #include "left_animation.h"
 
-extern "C" int _gettimeofday( struct timeval *tv, void *tzvp )
-{
-    uint64_t t = __your_system_time_function_here__();  // get uptime in nanoseconds
-    tv->tv_sec = t / 1000000000;  // convert to seconds
-    tv->tv_usec = ( t % 1000000000 ) / 1000;  // get remaining microseconds
-    return 0;  // return non-zero for error
-} // end _gettimeofday()
+#include <stdlib.h>
+#include <zephyr/kernel.h>
+#include <zephyr/random/random.h>
 
 ////////////////////////////////////////// DECLARE ASSETS //////////////////////////////////////////
 // Fry from Futurama (Anim)
@@ -82,7 +74,7 @@ int randomNumber(int min, int max) {
 }
 
 void draw_left_animation(lv_obj_t *canvas) {
-    srand(time(NULL));
+    srand(4);
 #if IS_ENABLED(CONFIG_NICE_VIEW_LEFT_ANIMATION)
     int random_index = randomNumber(0, left_anim_srcs_count);
     lv_obj_t *art = lv_animimg_create(canvas);
