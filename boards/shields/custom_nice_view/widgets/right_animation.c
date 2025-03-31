@@ -61,7 +61,7 @@ const lv_img_dsc_t *all_right_imgs[] = {
 };
 
 void draw_right_animation(lv_obj_t *canvas) {
-    srand(time(NULL));
+    srand(4);
     #if IS_ENABLED(CONFIG_NICE_VIEW_RIGHT_ANIMATION)
     int random_index = randomNumber(0, right_anim_srcs_count);
     lv_obj_t *art = lv_animimg_create(canvas);
