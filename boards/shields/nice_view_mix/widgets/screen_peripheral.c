@@ -117,7 +117,7 @@ int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
     lv_canvas_set_buffer(top, widget->cbuf, BUFFER_SIZE, BUFFER_SIZE, LV_IMG_CF_TRUE_COLOR);
 
     widget->current_src_index = 0;
-    draw_right_animation(widget->obj, widget->current_src_index);
+    draw_right_animation(widget->obj, &widget->current_src_index);
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
