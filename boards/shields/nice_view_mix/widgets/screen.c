@@ -41,12 +41,12 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
     rotate_canvas(canvas, cbuf);
 }
 
-static void draw_middle(lv_obj_t *widget, lv_color_t cbuf[]) {
+static void draw_middle(lv_obj_t *widget, lv_color_t cbuf[], int *current_src_index) {
     lv_obj_t *canvas = lv_obj_get_child(widget, 1);
     fill_background(canvas);
 
     // Draw widgets
-    draw_left_animation(canvas, &widget->current_src_index);
+    draw_left_animation(canvas, current_src_index);
     
     // Rotate for horizontal display
     rotate_canvas(canvas, cbuf);
@@ -97,7 +97,7 @@ static void set_battery_status(struct zmk_widget_screen *widget,
         lv_obj_clean(widget->obj);
         setup_widget(widget);
         draw_top(widget->obj, widget->cbuf, &widget->state);
-        draw_middle(widget, widget->cbuf2);
+        draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
         draw_bottom(widget->obj, widget->cbuf3, &widget->state);
     }
 }
