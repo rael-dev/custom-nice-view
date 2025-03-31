@@ -50,9 +50,8 @@ static void set_battery_status(struct zmk_widget_screen *widget,
 
     draw_top(widget->obj, widget->cbuf, &widget->state);
 
-    if (k_uptime_delta(widget->startup_time) >= 5000)
+    if (k_uptime_delta(&widget->startup_time) >= 5000)
     {
-        widget->startup_time = 0;
         widget->current_src_index = (widget->current_src_index + 1) % 2;
         draw_right_animation(widget->obj, widget->current_src_index);
     }
