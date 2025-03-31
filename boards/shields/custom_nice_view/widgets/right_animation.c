@@ -60,6 +60,10 @@ const lv_img_dsc_t *all_right_imgs[] = {
     &crystal_01, &onepunch_01, &bender_01, &onepiece_01,
 };
 
+int randomNumber(int min, int max) {
+    return min + rand() / (RAND_MAX / (max - min + 1) + 1);
+}
+
 void draw_right_animation(lv_obj_t *canvas) {
     srand(4);
     #if IS_ENABLED(CONFIG_NICE_VIEW_RIGHT_ANIMATION)
