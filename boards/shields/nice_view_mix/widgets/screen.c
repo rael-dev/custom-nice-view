@@ -93,7 +93,7 @@ static void set_battery_status(struct zmk_widget_screen *widget,
         lv_obj_clean(widget->obj);
         setup_widget(widget);
         draw_top(widget->obj, widget->cbuf, &widget->state);
-        draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
+        //draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
         draw_bottom(widget->obj, widget->cbuf3, &widget->state);
     }
     else {
@@ -201,7 +201,7 @@ int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
 
     setup_widget(widget);
     draw_top(widget->obj, widget->cbuf, &widget->state);
-    draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
+    //draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
