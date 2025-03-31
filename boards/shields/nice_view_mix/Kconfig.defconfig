@@ -28,11 +28,11 @@ config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
     imply NICE_VIEW_WIDGET_STATUS
 
 config NICE_VIEW_LEFT_ANIMATION
-    bool "Enable animation on peripheral"
+    bool "Enable animation on main screen"
     default y
 
  config NICE_VIEW_RIGHT_ANIMATION
-    bool "Enable animation on peripheral"
+    bool "Enable animation on peripheral screen"
     default y   
 
 config NICE_VIEW_LEFT_ANIMATION_MS
