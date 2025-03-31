@@ -70,8 +70,8 @@ static void setup_widget(struct zmk_widget_screen *widget) {
     lv_canvas_set_buffer(top, widget->cbuf, BUFFER_SIZE, BUFFER_SIZE, LV_IMG_CF_TRUE_COLOR);
 
     lv_obj_t *middle = lv_canvas_create(widget->obj);
-    lv_obj_align(top, LV_ALIGN_TOP_RIGHT, BUFFER_OFFSET_MIDDLE, 0);
-    lv_canvas_set_buffer(top, widget->cbuf2, BUFFER_SIZE, BUFFER_SIZE, LV_IMG_CF_TRUE_COLOR);
+    lv_obj_align(middle, LV_ALIGN_TOP_RIGHT, BUFFER_OFFSET_MIDDLE, 0);
+    lv_canvas_set_buffer(middle, widget->cbuf2, BUFFER_SIZE, BUFFER_SIZE, LV_IMG_CF_TRUE_COLOR);
 
     lv_obj_t *bottom = lv_canvas_create(widget->obj);
     lv_obj_align(bottom, LV_ALIGN_TOP_RIGHT, BUFFER_OFFSET_BOTTOM, 0);
@@ -93,7 +93,7 @@ static void set_battery_status(struct zmk_widget_screen *widget,
         lv_obj_clean(widget->obj);
         setup_widget(widget);
         draw_top(widget->obj, widget->cbuf, &widget->state);
-        //draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
+        draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
         draw_bottom(widget->obj, widget->cbuf3, &widget->state);
     }
     else {
@@ -200,8 +200,7 @@ int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
     widget->obj = lv_obj_create(parent);
 
     setup_widget(widget);
-    draw_top(widget->obj, widget->cbuf, &widget->state);
-    //draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
+    draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
