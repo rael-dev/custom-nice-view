@@ -4,6 +4,14 @@
 #include <zephyr/random/random.h>
 #include "right_animation.h"
 
+extern "C" int _gettimeofday( struct timeval *tv, void *tzvp )
+{
+    uint64_t t = __your_system_time_function_here__();  // get uptime in nanoseconds
+    tv->tv_sec = t / 1000000000;  // convert to seconds
+    tv->tv_usec = ( t % 1000000000 ) / 1000;  // get remaining microseconds
+    return 0;  // return non-zero for error
+} // end _gettimeofday()
+
 ////////////////////////////////////////// DECLARE ASSETS //////////////////////////////////////////
 // One Punch Man (Anim)
 LV_IMG_DECLARE(onepunch_01);
