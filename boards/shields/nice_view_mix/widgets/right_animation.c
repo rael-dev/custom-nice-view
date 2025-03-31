@@ -47,19 +47,16 @@ LV_IMG_DECLARE(onepiece_01);
 
 const int right_anim_srcs_count = 2;
 const int right_anim_img_counts[] = { 16, 5 };
-
+const int right_anim_imgs_count = 4;
 const lv_img_dsc_t *all_right_imgs[] = {
     &crystal_01, &onepunch_01, &bender_01, &onepiece_01,
 };
-const int right_anim_imgs_count = 4;
 
 void draw_right_animation(lv_obj_t *canvas, int *current_src_index) {
-    #if IS_ENABLED(CONFIG_NICE_VIEW_RIGHT_ANIMATION)
+#if IS_ENABLED(CONFIG_NICE_VIEW_RIGHT_ANIMATION)
     lv_obj_t *art = lv_animimg_create(canvas);
     lv_obj_center(art);
     
-    //srand(k_uptime_get_32());
-    //int random_index = rand() % right_anim_srcs_count;
     if (*current_src_index == 0) {
         lv_animimg_set_src(art, (const void **)crystal_anim_imgs, right_anim_img_counts[0]);
     }
@@ -71,14 +68,14 @@ void draw_right_animation(lv_obj_t *canvas, int *current_src_index) {
     lv_animimg_set_duration(art, CONFIG_NICE_VIEW_RIGHT_ANIMATION_MS);
     lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);
     lv_animimg_start(art);
-    #else
+#else
     lv_obj_t *art = lv_img_create(canvas);
 
-    srand(k_uptime_get_32());
+    srand(sys_rand32_get());
     int random_index = rand() % right_anim_imgs_count;
 
     lv_img_set_src(art, all_right_imgs[random_index]);
-    #endif
+#endif
     
     lv_obj_align(art, LV_ALIGN_TOP_LEFT, 36, 0);
 }

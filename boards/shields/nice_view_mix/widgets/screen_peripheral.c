@@ -50,13 +50,13 @@ static void set_battery_status(struct zmk_widget_screen *widget,
 
     draw_top(widget->obj, widget->cbuf, &widget->state);
 
-    if (k_uptime_delta(&widget->startup_time) >= 5000)
+    if (k_uptime_delta(&widget->startup_time) >= CONFIG_NICE_VIEW_SWITCH_ANIMATION_MS)
     {
         lv_obj_clean(widget->obj);
         lv_obj_t *top = lv_canvas_create(widget->obj);
         lv_obj_align(top, LV_ALIGN_TOP_RIGHT, 0, 0);
         lv_canvas_set_buffer(top, widget->cbuf, BUFFER_SIZE, BUFFER_SIZE, LV_IMG_CF_TRUE_COLOR);
-        draw_right_animation(widget->obj, &widget->current_src_index);
+        draw_left_animation(widget->obj, &widget->current_src_index);
     }
 }
 
@@ -113,6 +113,8 @@ ZMK_SUBSCRIPTION(widget_peripheral_status, zmk_split_peripheral_status_changed);
  **/
 
 int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
+    widget->startup_time = k_uptime_get();
+    widget->current_src_index = 0;
     widget->obj = lv_obj_create(parent);
     lv_obj_set_size(widget->obj, SCREEN_HEIGHT, SCREEN_WIDTH);
 
@@ -120,13 +122,11 @@ int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
     lv_obj_align(top, LV_ALIGN_TOP_RIGHT, 0, 0);
     lv_canvas_set_buffer(top, widget->cbuf, BUFFER_SIZE, BUFFER_SIZE, LV_IMG_CF_TRUE_COLOR);
 
-    widget->current_src_index = 0;
     draw_right_animation(widget->obj, &widget->current_src_index);
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
     widget_peripheral_status_init();
-    widget->startup_time = k_uptime_get();
     return 0;
 }
 

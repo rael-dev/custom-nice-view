@@ -43,6 +43,10 @@ config NICE_VIEW_RIGHT_ANIMATION_MS
     int "Animation length in milliseconds"
     default 960
 
+config NICE_VIEW_SWITCH_ANIMATION_MS
+    int "Time after which animation will switch on next battery update in milliseconds"
+    default 180000
+
 config NICE_VIEW_WIDGET_STATUS
     select LV_USE_LABEL
     select LV_USE_IMG

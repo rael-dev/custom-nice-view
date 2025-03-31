@@ -3,4 +3,4 @@
 #include <lvgl.h>
 #include "util.h"
 
-void draw_left_animation(lv_obj_t *canvas);
+void draw_left_animation(lv_obj_t *canvas, int *current_src_index);
