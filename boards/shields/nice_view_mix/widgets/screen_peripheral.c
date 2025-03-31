@@ -56,7 +56,7 @@ static void set_battery_status(struct zmk_widget_screen *widget,
         lv_obj_t *top = lv_canvas_create(widget->obj);
         lv_obj_align(top, LV_ALIGN_TOP_RIGHT, 0, 0);
         lv_canvas_set_buffer(top, widget->cbuf, BUFFER_SIZE, BUFFER_SIZE, LV_IMG_CF_TRUE_COLOR);
-        draw_left_animation(widget->obj, &widget->current_src_index);
+        draw_right_animation(widget->obj, &widget->current_src_index);
     }
 }
 
