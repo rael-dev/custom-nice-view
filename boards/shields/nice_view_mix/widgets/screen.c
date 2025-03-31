@@ -77,10 +77,6 @@ static void setup_widget(struct zmk_widget_screen *widget) {
     lv_obj_t *bottom = lv_canvas_create(widget->obj);
     lv_obj_align(bottom, LV_ALIGN_TOP_RIGHT, BUFFER_OFFSET_BOTTOM, 0);
     lv_canvas_set_buffer(bottom, widget->cbuf3, BUFFER_SIZE, BUFFER_SIZE, LV_IMG_CF_TRUE_COLOR);
-
-    draw_top(widget->obj, widget->cbuf, &widget->state);
-    draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
-    draw_bottom(widget->obj, widget->cbuf3, &widget->state);
 }
 
 /**
@@ -98,7 +94,10 @@ static void set_battery_status(struct zmk_widget_screen *widget,
     {
         lv_obj_clean(widget->obj);
         setup_widget(widget);
+        draw_middle(widget->obj, widget->cbuf2, &widget->current_src_index);
     }
+    
+    draw_top(widget->obj, widget->cbuf, &widget->state);
 }
 
 static void battery_status_update_cb(struct battery_status_state state) {
