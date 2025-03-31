@@ -60,13 +60,13 @@ void draw_right_animation(lv_obj_t *canvas, int *current_src_index) {
     
     //srand(k_uptime_get_32());
     //int random_index = rand() % right_anim_srcs_count;
-    if (current_src_index == 0) {
+    if (*current_src_index == 0) {
         lv_animimg_set_src(art, (const void **)crystal_anim_imgs, right_anim_img_counts[0]);
     }
-    else if (current_src_index == 1) {
+    else if (*current_src_index == 1) {
         lv_animimg_set_src(art, (const void **)onepunch_anim_imgs, right_anim_img_counts[1]);
     }
-    current_src_index = (current_src_index + 1) % right_anim_srcs_count;
+    *current_src_index = (*current_src_index + 1) % right_anim_srcs_count;
     
     lv_animimg_set_duration(art, CONFIG_NICE_VIEW_RIGHT_ANIMATION_MS);
     lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);
